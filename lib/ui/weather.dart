@@ -39,6 +39,22 @@ class _WeatherState extends State<Weather> {
                   fontSize: 24.0,
                   fontStyle: FontStyle.italic),
             ),
+          ),
+          Container(
+            alignment: Alignment.center,
+            child: Icon(
+              Icons.cloud,
+              color: Colors.white,
+              size: 100,
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 100.0),
+            alignment: Alignment.center,
+            child: Text(
+              "69F",
+              style: TextStyle(fontSize: 22.0, fontStyle: FontStyle.italic, color: Colors.white),
+            ),
           )
         ],
       ),
