@@ -100,7 +100,7 @@ class _WeatherState extends State<Weather> {
                 Container(
                   height: 250,
                   decoration: BoxDecoration(
-                      color: Color.fromRGBO(255, 255, 255, 0.4),
+                      color: Color.fromRGBO(255, 255, 255, .8),
                       borderRadius: BorderRadius.circular(5)),
                       margin: EdgeInsets.symmetric(horizontal: 25),
                   padding: EdgeInsets.symmetric(horizontal: 25),
