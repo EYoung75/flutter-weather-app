@@ -68,7 +68,7 @@ class _WeatherState extends State<Weather> {
           Container(
             margin: EdgeInsets.only(top: 100.0),
             alignment: Alignment.center,
-            child: updateTempWidget("Denver")
+            child: updateTempWidget(widget.city)
           )
         ],
       ),
