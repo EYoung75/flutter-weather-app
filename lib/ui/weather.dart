@@ -14,6 +14,9 @@ class Weather extends StatefulWidget {
 }
 
 class _WeatherState extends State<Weather> {
+
+  String backgroundImage = "images/first-weather.jpg";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +28,7 @@ class _WeatherState extends State<Weather> {
         children: <Widget>[
           Center(
             child: Image.asset(
-              "images/first-weather.jpg",
+              backgroundImage,
               height: 1200.0,
               width: 500.0,
               fit: BoxFit.fill,
@@ -49,7 +52,7 @@ class _WeatherState extends State<Weather> {
           ),
           Container(
               margin: EdgeInsets.only(top: 100),
-              child: updateTempWidget(widget.city))
+              child: updateTempWidget(widget.city, backgroundImage))
         ],
       ),
     );
@@ -64,7 +67,7 @@ class _WeatherState extends State<Weather> {
     return json.decode(response.body);
   }
 
-  Widget updateTempWidget(String city) {
+  Widget updateTempWidget(String city, String backgroundImage) {
     return FutureBuilder(
         future: getWeather(util.appId, city),
         builder: (BuildContext context, AsyncSnapshot<Map> snapshot) {
@@ -78,7 +81,6 @@ class _WeatherState extends State<Weather> {
                 "Range: ${content["main"]["temp_min"].toString()}°F - ${content["main"]["temp_max"].toString()}°F";
             String wind =
                 "Avg wind speed of ${content["wind"]["speed"]} mi/hr";
-
             return Column(
               children: <Widget>[
                 Container(
