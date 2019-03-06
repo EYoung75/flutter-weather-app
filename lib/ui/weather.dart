@@ -72,23 +72,15 @@ class _WeatherState extends State<Weather> {
             Map content = snapshot.data;
             String humidity =
                 "Humidity: ${content["main"]["humidity"].toString()}";
-            String description = content["weather"][0]["main"].toString();
+            String description = "Conditions: ${content["weather"][0]["main"].toString()}";
             String temperature = "${content["main"]["temp"].toString() + '°F'}";
-            String tempRange = "Range of ${content["main"]["temp_min"].toString()}°F - ${content["main"]["temp_max"].toString()}°F";
-            String wind = "Average wind speed of ${content["wind"]["speed"]} mi/hr";
+            String tempRange =
+                "Range: ${content["main"]["temp_min"].toString()}°F - ${content["main"]["temp_max"].toString()}°F";
+            String wind =
+                "Avg wind speed of ${content["wind"]["speed"]} mi/hr";
 
             return Column(
               children: <Widget>[
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(humidity),
-                    Text(description),
-                    Text(tempRange),
-                    Text(wind)
-                  ],
-                ),
-                SizedBox(height: 100),
                 Container(
                   alignment: Alignment.center,
                   child: Icon(
@@ -98,11 +90,39 @@ class _WeatherState extends State<Weather> {
                   ),
                 ),
                 Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      temperature,
-                      style: TextStyle(color: Colors.white, fontSize: 26),
-                    ))
+                  alignment: Alignment.center,
+                  child: Text(
+                    temperature,
+                    style: TextStyle(color: Colors.white, fontSize: 26),
+                  ),
+                ),
+                SizedBox(height: 60),
+                Container(
+                  height: 250,
+                  decoration: BoxDecoration(
+                      color: Color.fromRGBO(255, 255, 255, 0.4),
+                      borderRadius: BorderRadius.circular(5)),
+                      margin: EdgeInsets.symmetric(horizontal: 25),
+                  padding: EdgeInsets.symmetric(horizontal: 25),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Text(humidity,
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w500)),
+                      Text(description,
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w500)),
+                      Text(tempRange,
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w500)),
+                      Text(wind,
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w500))
+                    ],
+                  ),
+                ),
               ],
             );
           } else {
