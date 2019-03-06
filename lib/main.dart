@@ -1,11 +1,12 @@
 import "package:flutter/material.dart";
-import "./ui/weather.dart";
+import "./ui/search.dart";
 
 void main() {
   runApp(
     MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "Flutter weather app",
-      home: Weather(),
+      home: Search(),
     )
   );
 }

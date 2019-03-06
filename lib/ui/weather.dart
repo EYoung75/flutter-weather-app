@@ -7,6 +7,9 @@ import "../util/utils.dart" as util;
 
 
 class Weather extends StatefulWidget {
+  final String city;
+  Weather(this.city);
+
   @override
   _WeatherState createState() => _WeatherState();
 }
@@ -47,7 +50,7 @@ class _WeatherState extends State<Weather> {
             margin: EdgeInsets.fromLTRB(0.0, 25.0, 25.0, 0.0),
             alignment: Alignment.topRight,
             child: Text(
-              "Denver",
+              widget.city,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 24.0,
