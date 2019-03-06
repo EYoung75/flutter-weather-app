@@ -42,7 +42,7 @@ class _SearchState extends State<Search> {
             SizedBox(height: 20,),
             RaisedButton(
               onPressed: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Weather(city)),
                 );
