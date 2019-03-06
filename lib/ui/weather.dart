@@ -23,7 +23,7 @@ class _WeatherState extends State<Weather> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Weather"),
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.blueGrey[700],
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.menu),
@@ -65,10 +65,7 @@ class _WeatherState extends State<Weather> {
           Container(
             margin: EdgeInsets.only(top: 100.0),
             alignment: Alignment.center,
-            child: Text(
-              "69F",
-              style: TextStyle(fontSize: 22.0, fontStyle: FontStyle.italic, color: Colors.white),
-            ),
+            child: updateTempWidget("Denver")
           )
         ],
       ),
@@ -81,5 +78,17 @@ class _WeatherState extends State<Weather> {
     http.Response response = await http.get(apiUrl);
 
     return json.decode(response.body);
+  }
+
+  Widget updateTempWidget(String city) {
+    return FutureBuilder(
+      future: getWeather(util.appId, city),
+      builder: (BuildContext context, AsyncSnapshot<Map> snapshot){
+        if(snapshot.hasData) {
+          Map content = snapshot.data;
+          return Text(content["main"]["temp"].toString(), style: TextStyle(color: Colors.white, fontSize: 26),);
+          
+        }
+    });
   }
 }
