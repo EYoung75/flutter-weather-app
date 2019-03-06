@@ -14,7 +14,6 @@ class Weather extends StatefulWidget {
 }
 
 class _WeatherState extends State<Weather> {
-
   String backgroundImage = "images/first-weather.jpg";
 
   @override
@@ -75,23 +74,25 @@ class _WeatherState extends State<Weather> {
             Map content = snapshot.data;
             String humidity =
                 "Humidity: ${content["main"]["humidity"].toString()}";
-            String description = "Conditions: ${content["weather"][0]["main"].toString()}";
+            String description =
+                "Conditions: ${content["weather"][0]["main"].toString()}";
             String temperature = "${content["main"]["temp"].toString() + '°F'}";
             String tempRange =
                 "Range: ${content["main"]["temp_min"].toString()}°F - ${content["main"]["temp_max"].toString()}°F";
-            String wind =
-                "Avg wind speed of ${content["wind"]["speed"]} mi/hr";
+            String wind = "Avg wind speed of ${content["wind"]["speed"]} mi/hr";
             return Column(
               children: <Widget>[
                 Container(
-                  alignment: Alignment.center,
-                  child: Icon(
-                    Icons.cloud,
-                    color: Colors.white,
-                    size: 100,
-                  ),
-                ),
+                    alignment: Alignment.center,
+                    child: content["weather"][0]["id"] < 800
+                        ? Icon(
+                            Icons.cloud,
+                            color: Colors.white,
+                            size: 100,
+                          )
+                        : Icon(Icons.wb_sunny, color: Colors.white, size: 100)),
                 Container(
+                  margin: EdgeInsets.only(top: 10),
                   alignment: Alignment.center,
                   child: Text(
                     temperature,
@@ -104,7 +105,7 @@ class _WeatherState extends State<Weather> {
                   decoration: BoxDecoration(
                       color: Color.fromRGBO(255, 255, 255, .8),
                       borderRadius: BorderRadius.circular(5)),
-                      margin: EdgeInsets.symmetric(horizontal: 25),
+                  margin: EdgeInsets.symmetric(horizontal: 25),
                   padding: EdgeInsets.symmetric(horizontal: 25),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
