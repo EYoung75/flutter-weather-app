@@ -88,6 +88,8 @@ class _WeatherState extends State<Weather> {
           Map content = snapshot.data;
           return Text(content["main"]["temp"].toString(), style: TextStyle(color: Colors.white, fontSize: 26),);
           
+        } else {
+          return Container();
         }
     });
   }
