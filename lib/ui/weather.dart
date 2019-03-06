@@ -1,6 +1,10 @@
 import "package:flutter/material.dart";
+import "dart:async";
+import "dart:convert";
+import "package:http/http.dart" as http;
 
-import "../util/utils.dart";
+import "../util/utils.dart" as util;
+
 
 class Weather extends StatefulWidget {
   @override
@@ -8,6 +12,12 @@ class Weather extends StatefulWidget {
 }
 
 class _WeatherState extends State<Weather> {
+
+  void showStuff() async {
+    Map data = await getWeather(util.appId, util.defaultCity);
+    print(data.toString());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +27,9 @@ class _WeatherState extends State<Weather> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.menu),
-            onPressed: () {},
+            onPressed: () {
+              showStuff();
+            },
           )
         ],
       ),
@@ -61,5 +73,13 @@ class _WeatherState extends State<Weather> {
         ],
       ),
     );
+  }
+
+  Future<Map> getWeather(String appId, String city) async {
+    String apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=$city&appid=${util.appId}&units=imperial";
+
+    http.Response response = await http.get(apiUrl);
+
+    return json.decode(response.body);
   }
 }
